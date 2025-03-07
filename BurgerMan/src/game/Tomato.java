@@ -4,19 +4,18 @@ import java.awt.*;
 
 import game.Point;
 
-public class Rectangle extends Polygon {
+public class Tomato extends Polygon {
 	private int speed;
 	private Color color;
 
-	public Rectangle(Point[] inShape, Point inPosition, double inRotation, int speed) {
+	public Tomato(Point[] inShape, Point inPosition, double inRotation, int speed) {
 		super(inShape, inPosition, inRotation);
 		this.speed = speed;
-	
 
 	}
 
 	void paint(Graphics brush) {
-		
+
 		brush.setColor(Color.RED); // Set rectangle color
 		Point[] points = this.getPoints(); // call getPoints on Polygon class, returns an array of points
 		int[] xPoints = new int[points.length]; // create int array of values stored as xPoints, for x coord
@@ -31,10 +30,19 @@ public class Rectangle extends Polygon {
 		// use Graphics utilities to fill the polygon
 		brush.fillPolygon(xPoints, yPoints, points.length);
 
-		// Move the rectangle downward every frame
-		this.position.y += speed; // set to 2 for now
 	}
-	
+
+	public void move() {
+		if (this.position.y < 10) {
+			this.position.y += speed;
+		} else if (this.position.y < 30) {
+			this.rotation += 18;
+			this.position.y += speed;
+		} else {
+			this.position.y += speed;
+		}
+	}
+
 	
 
 	// we might not need this, putting this here just in case

@@ -12,7 +12,7 @@ import java.awt.event.*;
 
 class BurgerMan extends Game {
 	static int counter = 0;
-	private Rectangle rect;
+	private Tomato tom;
 	private  Plate plate;
 	private int speed = 2; // velocity for movement
 
@@ -24,13 +24,13 @@ class BurgerMan extends Game {
 		
 
         //Define a rectangle shape
-		Point[] rectangle = { new Point(0, 0), new Point(50, 0), new Point(50, 30), new Point(0, 30) };
-		// Initialize rectangle at position (200, 200), no rotations, 50 W and 30 H
-		rect = new Rectangle(rectangle, new Point(200, 200), 0, 2);
+		Point[] rectangle = { new Point(0, 0), new Point(50, 0), new Point(50, 10), new Point(0, 10) };
+		// Initialize tomato at position (200, 200), no rotations, speed 2
+		tom = new Tomato(rectangle, new Point(200, 0), 0, 2);
 		
 		//Defines a trapezoid shape
 		Point[] trapezoid = { new Point(0, 0), new Point(70, 0), new Point(65, 10), new Point(5, 10) };
-		// intialize a new plate at 200, 200 with no rotation and no speed
+		// intialize a new plate at 200, 200 with no rotation and no speed 9
 		plate = new Plate(trapezoid, new Point(200, 530), 0, 9);
 		this.addKeyListener(plate);
 		
@@ -53,8 +53,9 @@ class BurgerMan extends Game {
 		brush.setColor(Color.white);
 		brush.drawString("Counter is " + counter, 10, 10); // (10, 10) is the position of the counter
 		
-		rect.paint(brush);
+		tom.paint(brush);
 		plate.paint(brush);
+		tom.move();
 		plate.move();
 	
 

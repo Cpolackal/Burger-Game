@@ -8,7 +8,7 @@ import java.awt.event.*;
 public class Plate extends Polygon implements KeyListener{
 
 	 
-	private int topWidth, tHeight, bottomWidth; // w and h of rectangle
+
 	private int speed;
 	private boolean forward;
 	private boolean right;
@@ -31,7 +31,7 @@ public class Plate extends Polygon implements KeyListener{
 		int[] yPoints = new int[points.length];
 
 		
-		brush.setColor(Color.WHITE); // Set rectangle color
+		brush.setColor(Color.WHITE); // Set plate color
 		points = this.getPoints(); // call getPoints on Polygon class, returns an array of points
 		xPoints = new int[points.length]; // create int array of values stored as xPoints, for x coord
 		yPoints = new int[points.length];
@@ -45,14 +45,16 @@ public class Plate extends Polygon implements KeyListener{
 	}
 
 	public void move() {
-		
+		// called from the paint method, this makes the plate move back and forth depending on keys
 		if(right) {
 			this.position.x += speed;
+			
 		}
 		
 		if(left) {
 			this.position.x -= speed;
 		}
+	
 		
 	
 	}
