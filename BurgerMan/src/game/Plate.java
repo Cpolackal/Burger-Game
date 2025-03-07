@@ -10,16 +10,16 @@ public class Plate extends Polygon implements KeyListener{
 	  
 
 	private static int speed = 10;
-	private boolean forward;
 	private boolean right;
 	private boolean left;
+	private int height;
 	private Color color;
 	
-	public Plate(Point[] inShape, Point inPosition, double inRotation) {
+	public Plate(Point[] inShape, Point inPosition, double inRotation, int height) {
 		super(inShape, inPosition, inRotation);
-		this.forward = false;
 		this.right = false;
 		this.left = false;
+		this.height = height;
 		
 		
 
@@ -58,13 +58,7 @@ public class Plate extends Polygon implements KeyListener{
 	}
 	
 	
-	public void collide(Polygon other) {
-		for(int i = 0; i < other.getPoints().length; i++) {
-			if(this.contains(other.getPoints()[i])){
-				other.setSpeed(0);
-			}
-		}
-	}
+
 	
 	public void wrap() {
 		if(this.position.x <= -60) {
@@ -85,6 +79,7 @@ public class Plate extends Polygon implements KeyListener{
 
 	}
 	
+	
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			right = false;
@@ -102,6 +97,11 @@ public class Plate extends Polygon implements KeyListener{
 	
 	public void keyTyped(KeyEvent e) {
 		
+	}
+	
+	
+	public int getHeight() {
+		return this.height;
 	}
 	
 	public void setSpeed(int speed) {

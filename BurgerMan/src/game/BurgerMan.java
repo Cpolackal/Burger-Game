@@ -27,8 +27,8 @@ class BurgerMan extends Game {
 				new Point(35, 14), new Point(45, 12), new Point(55, 10), 
 				new Point(55, 0), new Point(-5, 0) };
 		int rand = (int) (Math.random() * 726) + 20;
-		bottom = new Buns(semiCircle, new Point(rand, -3), 0);
-		top = new Buns(semiCircle, new Point(rand, -3), 180);
+		bottom = new Buns(semiCircle, new Point(rand, -3), 0, 15);
+		top = new Buns(semiCircle, new Point(rand, -3), 180, 15);
 		this.addKeyListener(bottom);
 		this.addKeyListener(top);
 
@@ -37,14 +37,14 @@ class BurgerMan extends Game {
 				new Point(50, 10), new Point(0, 10) };
 		// Initialize tomato at position (200, 200), no rotations, speed 2
 		rand = (int) (Math.random() * 726) + 20;
-		tom = new Tomato(rectangle, new Point(rand, -200), 0);
+		tom = new Tomato(rectangle, new Point(rand, -200), 0, 10);
 		this.addKeyListener(tom);
 
 		// Defines a trapezoid shape
 		Point[] trapezoid = { new Point(0, 0), new Point(70, 0), 
 				new Point(65, 10), new Point(5, 10) };
 		// intialize a new plate at 200, 200 with no rotation and no speed 9
-		plate = new Plate(trapezoid, new Point(200, 530), 0);
+		plate = new Plate(trapezoid, new Point(200, 530), 0, 10);
 		this.addKeyListener(plate);
 
 	}

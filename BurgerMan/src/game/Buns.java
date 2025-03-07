@@ -8,15 +8,17 @@ import java.awt.*;
 
 public class Buns extends Polygon implements KeyListener {
 	private static int ySpeed;
+	private static int xSpeed;
 	private boolean right;
 	private boolean left;
+	private int height;
 	private Color color;
-	private static int xSpeed;
 
-	public Buns(Point[] inShape, Point inPosition, double inRotation) {
+	public Buns(Point[] inShape, Point inPosition, double inRotation, int height) {
 		super(inShape, inPosition, inRotation);
 		ySpeed = 4;
 		xSpeed = 10;
+		this.height = height;
 	}
 
 	void paint(Graphics brush) {
@@ -83,13 +85,11 @@ public class Buns extends Polygon implements KeyListener {
 
 	}
 	
-	public void collide(Polygon other) {
-		for(int i = 0; i < other.getPoints().length; i++) {
-			if(this.contains(other.getPoints()[i])){
-				other.setSpeed(0);
-			}
-		}
+	public int getHeight() {
+		return this.height;
 	}
+	
+	
 
 	public void wrap() {
 		if (this.position.x <= -60) {
