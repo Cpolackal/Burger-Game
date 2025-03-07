@@ -60,6 +60,18 @@ public class Plate extends Polygon implements KeyListener{
 	}
 	
 	
+	public void collide(Polygon other) {
+		for(int i = 0; i < other.getPoints().length; i++) {
+			if(this.contains(other.getPoints()[i])){
+				if(other instanceof Tomato) { 
+					Tomato t = (Tomato)other;
+					t.setSpeed(0);
+				}
+			}
+		}
+	}
+	
+	
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			right = true;
@@ -81,6 +93,7 @@ public class Plate extends Polygon implements KeyListener{
 
 		
 	}
+	
 	
 	public void keyTyped(KeyEvent e) {
 		

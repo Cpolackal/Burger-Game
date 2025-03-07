@@ -42,6 +42,10 @@ public class Tomato extends Polygon {
 			this.position.y += speed;
 		}
 	}
+	
+	public void setSpeed(int speed) {
+		this.speed = 0;
+	}
 
 	
 

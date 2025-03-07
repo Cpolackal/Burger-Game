@@ -53,10 +53,13 @@ class BurgerMan extends Game {
 		brush.setColor(Color.white);
 		brush.drawString("Counter is " + counter, 10, 10); // (10, 10) is the position of the counter
 		
+		Polygon[] elem = {tom, plate};
+		
 		tom.paint(brush);
 		plate.paint(brush);
 		tom.move();
 		plate.move();
+		plate.collide(tom);
 	
 
 	}
