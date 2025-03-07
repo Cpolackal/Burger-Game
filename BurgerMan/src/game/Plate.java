@@ -20,8 +20,8 @@ public class Plate extends Polygon implements KeyListener{
 		this.right = false;
 		this.left = false;
 		this.height = height;
-		
-		
+		// right and left are for keyboard inputs.
+		 
 
 	}
 
@@ -43,7 +43,8 @@ public class Plate extends Polygon implements KeyListener{
 	}
 
 	public void move() {
-		// called from the paint method, this makes the plate move back and forth depending on keys
+		// called from the paint method in Burgerman, this makes the plate move 
+		// back and forth depending on keys
 		if(right) {
 			this.position.x += speed;
 			
@@ -59,7 +60,7 @@ public class Plate extends Polygon implements KeyListener{
 	
 	
 
-	
+	// If the player goes off the screen they get wrapped around
 	public void wrap() {
 		if(this.position.x <= -60) {
 			this.position.x = 800;
@@ -69,6 +70,7 @@ public class Plate extends Polygon implements KeyListener{
 	}
 	
 	
+	// This implements keyboard input
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
 			right = true;

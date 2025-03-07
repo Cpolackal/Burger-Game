@@ -15,7 +15,7 @@ abstract class Game extends Canvas {
 
 	public Game(String name, int inWidth, int inHeight) {
 		width = inWidth;
-		height = inHeight;
+		height = inHeight; 
 
 		// Frame can be read as 'window' here.
 		Frame frame = new Frame(name);

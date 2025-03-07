@@ -82,7 +82,7 @@ public class Tomato extends Polygon implements KeyListener {
 		}
 
 	}
-
+ 
 
 	public void keyTyped(KeyEvent e) {
 
