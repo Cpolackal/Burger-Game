@@ -7,20 +7,20 @@ import java.awt.event.*;
 
 public class Plate extends Polygon implements KeyListener{
 
-	 
+	  
 
-	private int speed;
+	private static int speed = 9;
 	private boolean forward;
 	private boolean right;
 	private boolean left;
 	private Color color;
 
-	public Plate(Point[] inShape, Point inPosition, double inRotation, int speed) {
+	public Plate(Point[] inShape, Point inPosition, double inRotation) {
 		super(inShape, inPosition, inRotation);
 		this.forward = false;
 		this.right = false;
 		this.left = false;
-		this.speed = speed;
+		
 
 	}
 

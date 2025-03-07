@@ -1,17 +1,21 @@
 package game;
 
 import java.awt.*;
+import java.awt.event.*;
 
 import game.Point;
 
-public class Tomato extends Polygon {
-	private int speed;
+public class Tomato extends Polygon implements KeyListener{
+	private static int ySpeed;
+	private boolean right;
+	private boolean left;
 	private Color color;
+	private static int xSpeed;
 
-	public Tomato(Point[] inShape, Point inPosition, double inRotation, int speed) {
+	public Tomato(Point[] inShape, Point inPosition, double inRotation) {
 		super(inShape, inPosition, inRotation);
-		this.speed = speed;
-
+		ySpeed = 4;
+		xSpeed = 9;
 	}
 
 	void paint(Graphics brush) {
@@ -33,21 +37,55 @@ public class Tomato extends Polygon {
 	}
 
 	public void move() {
+
 		if (this.position.y < 10) {
-			this.position.y += speed;
-		} else if (this.position.y < 30) {
-			this.rotation += 18;
-			this.position.y += speed;
+			this.position.y += ySpeed;
+		} else if (this.position.y < 70) {
+			this.rotation += 24;
+			this.position.y += ySpeed; 
 		} else {
-			this.position.y += speed;
+			this.position.y += ySpeed;
+		}
+		if (ySpeed == 0) {
+			if (right) {
+				this.position.x += xSpeed;
+
+			}
+
+			if (left) {
+				this.position.x -= xSpeed;
+			}
 		}
 	}
-	
-	public void setSpeed(int speed) {
-		this.speed = 0;
+
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			right = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			left = true;
+		}
+
 	}
 
-	
+	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			right = false;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			left = false;
+		}
+
+	}
+
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	public void setSpeed(int speed) {
+		this.ySpeed = speed;
+	}
 
 	// we might not need this, putting this here just in case
 	public Color getColor() {

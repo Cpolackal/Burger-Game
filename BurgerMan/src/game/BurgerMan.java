@@ -21,17 +21,19 @@ class BurgerMan extends Game {
 		this.setFocusable(true);
 		this.requestFocus();
 		
-		
+		 
 
         //Define a rectangle shape
 		Point[] rectangle = { new Point(0, 0), new Point(50, 0), new Point(50, 10), new Point(0, 10) };
 		// Initialize tomato at position (200, 200), no rotations, speed 2
-		tom = new Tomato(rectangle, new Point(200, 0), 0, 2);
+		int rand = (int)(Math.random()*726)+20;
+		tom = new Tomato(rectangle, new Point(rand, 0), 0);
+		this.addKeyListener(tom);
 		
 		//Defines a trapezoid shape
 		Point[] trapezoid = { new Point(0, 0), new Point(70, 0), new Point(65, 10), new Point(5, 10) };
 		// intialize a new plate at 200, 200 with no rotation and no speed 9
-		plate = new Plate(trapezoid, new Point(200, 530), 0, 9);
+		plate = new Plate(trapezoid, new Point(200, 530), 0);
 		this.addKeyListener(plate);
 		
 	}

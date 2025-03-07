@@ -31,7 +31,7 @@ abstract class Game extends Canvas {
 
 		buffer = createImage(width, height);
 	}
-
+ 
 	// 'paint' will be called every tenth of a second that the game is on.
 	abstract public void paint(Graphics brush);
 
