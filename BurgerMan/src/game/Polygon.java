@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Graphics;
+
 /*
 CLASS: Polygon
 DESCRIPTION: A polygon is a sequence of points in space defined by a set of
@@ -15,7 +17,7 @@ NOTE: You don't need to worry about the "magic math" details.
 
 */
 
-class Polygon {
+abstract class Polygon {
   private Point[] shape;   // An array of points.
   public Point position;   // The offset mentioned above.
   public double rotation; // Zero degrees is due east.
@@ -35,7 +37,7 @@ class Polygon {
     // Then, we orient all of its points relative to the real origin.
     for (Point p : shape) {
       p.x -= origin.x;
-      p.y -= origin.y;
+      p.y -= origin.y; 
     }
   }
   
@@ -73,6 +75,13 @@ class Polygon {
   }
   
   public void rotate(int degrees) {rotation = (rotation+degrees)%360;}
+  
+  
+  abstract void paint(Graphics brush);
+  abstract void move();
+  abstract void wrap();
+  abstract void setSpeed(int speed);
+  abstract void collide(Polygon other);
   
   /*
   The following methods are private access restricted because, as this access

@@ -13,31 +13,42 @@ import java.awt.event.*;
 class BurgerMan extends Game {
 	static int counter = 0;
 	private Tomato tom;
-	private  Plate plate;
-	private int speed = 2; // velocity for movement
+	private Plate plate;
+	private Buns bottom;
+	private Buns top;
 
 	public BurgerMan() {
 		super("BurgerMan!", 800, 600);
 		this.setFocusable(true);
 		this.requestFocus();
-		
-		 
 
-        //Define a rectangle shape
-		Point[] rectangle = { new Point(0, 0), new Point(50, 0), new Point(50, 10), new Point(0, 10) };
+		Point[] semiCircle = { new Point(-5, 10), new Point(5, 12), 
+				new Point(15, 14), new Point(25, 15),
+				new Point(35, 14), new Point(45, 12), new Point(55, 10), 
+				new Point(55, 0), new Point(-5, 0) };
+		int rand = (int) (Math.random() * 726) + 20;
+		bottom = new Buns(semiCircle, new Point(rand, -3), 0);
+		top = new Buns(semiCircle, new Point(rand, -3), 180);
+		this.addKeyListener(bottom);
+		this.addKeyListener(top);
+
+		// Define a rectangle shape
+		Point[] rectangle = { new Point(0, 0), new Point(50, 0), 
+				new Point(50, 10), new Point(0, 10) };
 		// Initialize tomato at position (200, 200), no rotations, speed 2
-		int rand = (int)(Math.random()*726)+20;
-		tom = new Tomato(rectangle, new Point(rand, 0), 0);
+		rand = (int) (Math.random() * 726) + 20;
+		tom = new Tomato(rectangle, new Point(rand, -200), 0);
 		this.addKeyListener(tom);
-		
-		//Defines a trapezoid shape
-		Point[] trapezoid = { new Point(0, 0), new Point(70, 0), new Point(65, 10), new Point(5, 10) };
+
+		// Defines a trapezoid shape
+		Point[] trapezoid = { new Point(0, 0), new Point(70, 0), 
+				new Point(65, 10), new Point(5, 10) };
 		// intialize a new plate at 200, 200 with no rotation and no speed 9
 		plate = new Plate(trapezoid, new Point(200, 530), 0);
 		this.addKeyListener(plate);
-		
+
 	}
-	
+
 	public Plate getPlate() {
 		return this.plate;
 	}
@@ -50,30 +61,34 @@ class BurgerMan extends Game {
 		// sample code for printing message for debugging
 		// counter is incremented and this message printed
 		// each time the canvas is repainted
-        //don’t change for now
+		// don’t change for now
 		counter++;
 		brush.setColor(Color.white);
-		brush.drawString("Counter is " + counter, 10, 10); // (10, 10) is the position of the counter
-		
-		Polygon[] elem = {tom, plate};
-		
-		tom.paint(brush);
-		plate.paint(brush);
-		tom.move();
-		plate.move();
-		plate.collide(tom);
-	
+		brush.drawString("Counter is " + plate.position.x, 10, 10); // (10, 10) is the position of the counter
 
+		Polygon[] elem = { tom, plate, bottom};
+		
+		
+		for(Polygon p : elem) {
+			p.paint(brush);
+			p.move();
+			p.wrap();
+			for(int i = 0; i < elem.length; i++) {
+				if(!(p.getClass().equals(elem[i].getClass()))){
+				p.collide(elem[i]);
+				}
+			}
+			
+		}
+	
+		
+		
+	
 	}
-	
-
 
 	public static void main(String[] args) {
 		BurgerMan a = new BurgerMan();
 		a.repaint();
-		
-		
-		
-		
+
 	}
 }

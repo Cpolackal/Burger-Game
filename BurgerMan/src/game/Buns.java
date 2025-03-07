@@ -1,33 +1,33 @@
 package game;
 
-import java.awt.*;
 import java.awt.event.*;
 
 import game.Point;
 
-public class Tomato extends Polygon implements KeyListener {
+import java.awt.*;
+
+public class Buns extends Polygon implements KeyListener {
 	private static int ySpeed;
 	private boolean right;
 	private boolean left;
 	private Color color;
 	private static int xSpeed;
 
-	public Tomato(Point[] inShape, Point inPosition, double inRotation) {
+	public Buns(Point[] inShape, Point inPosition, double inRotation) {
 		super(inShape, inPosition, inRotation);
 		ySpeed = 4;
 		xSpeed = 10;
 	}
 
 	void paint(Graphics brush) {
-
-		brush.setColor(Color.RED); // Set rectangle color
-		Point[] points = this.getPoints(); // call getPoints on Polygon class, returns an array of points
-		int[] xPoints = new int[points.length]; // create int array of values stored as xPoints, for x coord
+		Color lightBrown = new Color(222, 184, 135);
+		brush.setColor(lightBrown);
+		Point[] points = this.getPoints();
+		int[] xPoints = new int[points.length];
 		int[] yPoints = new int[points.length];
 
-		// this goes through the corners of the rect,
 		for (int i = 0; i < points.length; i++) {
-			xPoints[i] = (int) points[i].x; // (int) because it tells me to
+			xPoints[i] = (int) points[i].x;
 			yPoints[i] = (int) points[i].y;
 		}
 
@@ -79,9 +79,16 @@ public class Tomato extends Polygon implements KeyListener {
 
 	}
 
-
 	public void keyTyped(KeyEvent e) {
 
+	}
+	
+	public void collide(Polygon other) {
+		for(int i = 0; i < other.getPoints().length; i++) {
+			if(this.contains(other.getPoints()[i])){
+				other.setSpeed(0);
+			}
+		}
 	}
 
 	public void wrap() {
@@ -92,22 +99,7 @@ public class Tomato extends Polygon implements KeyListener {
 		}
 	}
 
-	
-	public void collide(Polygon other) {
-		for(int i = 0; i < other.getPoints().length; i++) {
-			if(this.contains(other.getPoints()[i])){
-				other.setSpeed(0);
-			}
-		}
-	}
-	
 	public void setSpeed(int speed) {
 		ySpeed = speed;
 	}
-
-	// we might not need this, putting this here just in case
-	public Color getColor() {
-		return color;
-	}
-
 }
