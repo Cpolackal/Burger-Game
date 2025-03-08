@@ -3,8 +3,9 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Lettuce extends Polygon {
+public class Lettuce extends Polygon implements KeyListener{
 
 	private static int ySpeed;
 	private static int xSpeed;
