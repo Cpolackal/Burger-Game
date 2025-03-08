@@ -17,6 +17,8 @@ NOTE: You don't need to worry about the "magic math" details.
 
 */
 
+
+
 abstract class Polygon {
 	private Point[] shape; // An array of points.
 	public Point position; // The offset mentioned above.
@@ -85,10 +87,12 @@ abstract class Polygon {
 	abstract void move();
 
 	abstract void wrap();
+	
+
 
 	abstract void setSpeed(int speed);
 
-	abstract int getHeight();
+	
 
 	public void collide(Polygon other) {
 		

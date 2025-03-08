@@ -10,12 +10,19 @@ NOTE: This class is the metaphorical "main method" of your program,
 import java.awt.*;
 import java.awt.event.*;
 
+
+@FunctionalInterface
+interface gen{
+	int next();
+}
+
 class BurgerMan extends Game {
 	static int counter = 0;
 	private Tomato tom;
 	private Plate plate;
 	private Buns bottom;
 	private Buns top;
+	private Lettuce lett;
 
 	public BurgerMan() {
 		super("BurgerMan!", 800, 600);
@@ -23,16 +30,31 @@ class BurgerMan extends Game {
 		this.requestFocus();
 		
 		
+	
+		Point[] jagged = {
+				new Point(6, 0), new Point(18, 0), new Point(22, 6), 
+			    new Point(31, 8), new Point(29, 18), new Point(18, 22),
+			    new Point(6, 22), new Point(0, 18)
+		
+		};
+		int rand = (int) (Math.random() * 726) + 20;
+		lett = new Lettuce(jagged, new Point(rand, -3), 0);
+		
+		
+		
+		
 		// Making a new semicircle for buns
 		Point[] semiCircle = { new Point(-5, 10), new Point(5, 12), 
 				new Point(15, 14), new Point(25, 15),
 				new Point(35, 14), new Point(45, 12), new Point(55, 10), 
 				new Point(55, 0), new Point(-5, 0) };
-		int rand = (int) (Math.random() * 726) + 20;
+		rand = (int) (Math.random() * 726) + 20;
 		
 		// making the top and bottom buns (top is just rotated 180 degrees)
-		bottom = new Buns(semiCircle, new Point(rand, -3), 0, 15);
-		top = new Buns(semiCircle, new Point(rand, -3), 180, 15);
+		bottom = new Buns(semiCircle, new Point(rand, -3), 0);
+		
+		rand = (int) (Math.random() * 726) + 20;
+		top = new Buns(semiCircle, new Point(rand, -3), 180);
 		// addKeyListener allow the buns to follow keyboard input when they have collided
 		// with the plate (see proj4 doc for more info)
 		this.addKeyListener(bottom);
@@ -43,7 +65,7 @@ class BurgerMan extends Game {
 				new Point(50, 10), new Point(0, 10) };
 		// Initialize tomato at position (200, 200), no rotations, speed 2
 		rand = (int) (Math.random() * 726) + 20;
-		tom = new Tomato(rectangle, new Point(rand, -200), 0, 10);
+		tom = new Tomato(rectangle, new Point(rand, -200), 0);
 		// addKeyListener allow the tomato to follow keyboard input when they have collided
 		// with the plate (see proj4 doc for more info)
 		this.addKeyListener(tom);
@@ -52,16 +74,20 @@ class BurgerMan extends Game {
 		Point[] trapezoid = { new Point(0, 0), new Point(70, 0), 
 				new Point(65, 10), new Point(5, 10) };
 		// intialize a new plate at 200, 200 with no rotation and no speed 9
-		plate = new Plate(trapezoid, new Point(200, 530), 0, 10);
+		plate = new Plate(trapezoid, new Point(200, 530), 0);
 		// addKeyListener allow the plate to follow keyboard input (see proj4 doc for more info)
 		this.addKeyListener(plate);
 
 	}
+	
+	
 
 	public Plate getPlate() {
 		return this.plate;
 	} 
 
+
+	
 	public void paint(Graphics brush) {
 		// background don’t change for now
 		brush.setColor(Color.black);
@@ -75,7 +101,7 @@ class BurgerMan extends Game {
 		brush.setColor(Color.white);
 		brush.drawString("Counter is " + plate.position.x, 10, 10); // (10, 10) is the position of the counter
 
-		Polygon[] elem = { tom, plate, bottom};
+		Polygon[] elem = { tom, plate, bottom, lett};
 		
 		
 		

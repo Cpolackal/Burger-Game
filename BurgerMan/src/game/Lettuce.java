@@ -1,34 +1,34 @@
 package game;
 
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
-import game.Point;
+public class Lettuce extends Polygon {
 
-import java.awt.*;
-
-public class Buns extends Polygon implements KeyListener {
 	private static int ySpeed;
 	private static int xSpeed;
 	private boolean right;
 	private boolean left;
-	private Color color; 
+	private Color color;
 
-	public Buns(Point[] inShape, Point inPosition, double inRotation) {
+	public Lettuce(Point[] inShape, Point inPosition, double inRotation) {
 		super(inShape, inPosition, inRotation);
 		ySpeed = 4;
 		xSpeed = 10;
-		
+
 	}
 
 	void paint(Graphics brush) {
-		Color lightBrown = new Color(222, 184, 135);
-		brush.setColor(lightBrown);
-		Point[] points = this.getPoints();
-		int[] xPoints = new int[points.length];
+
+		brush.setColor(Color.GREEN); // Set rectangle color
+		Point[] points = this.getPoints(); // call getPoints on Polygon class, returns an array of points
+		int[] xPoints = new int[points.length]; // create int array of values stored as xPoints, for x coord
 		int[] yPoints = new int[points.length];
 
+		// this goes through the corners of the rect,
 		for (int i = 0; i < points.length; i++) {
-			xPoints[i] = (int) points[i].x;
+			xPoints[i] = (int) points[i].x; // (int) because it tells me to
 			yPoints[i] = (int) points[i].y;
 		}
 
@@ -83,10 +83,6 @@ public class Buns extends Polygon implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 
 	}
-	
-
-	
-	
 
 	public void wrap() {
 		if (this.position.x <= -60) {
@@ -99,4 +95,10 @@ public class Buns extends Polygon implements KeyListener {
 	public void setSpeed(int speed) {
 		ySpeed = speed;
 	}
+
+	// we might not need this, putting this here just in case
+	public Color getColor() {
+		return color;
+	}
+
 }

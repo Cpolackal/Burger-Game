@@ -12,14 +12,13 @@ public class Plate extends Polygon implements KeyListener{
 	private static int speed = 10;
 	private boolean right;
 	private boolean left;
-	private int height;
 	private Color color;
 	
-	public Plate(Point[] inShape, Point inPosition, double inRotation, int height) {
+	public Plate(Point[] inShape, Point inPosition, double inRotation) {
 		super(inShape, inPosition, inRotation);
 		this.right = false;
 		this.left = false;
-		this.height = height;
+		
 		// right and left are for keyboard inputs.
 		 
 
@@ -102,9 +101,7 @@ public class Plate extends Polygon implements KeyListener{
 	}
 	
 	
-	public int getHeight() {
-		return this.height;
-	}
+	
 	
 	public void setSpeed(int speed) {
 		

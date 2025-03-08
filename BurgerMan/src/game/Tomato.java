@@ -5,21 +5,22 @@ import java.awt.event.*;
 
 import game.Point;
 
+
+
 public class Tomato extends Polygon implements KeyListener {
 	private static int ySpeed;
 	private static int xSpeed;
 	private boolean right;
 	private boolean left;
-	private int height;
-	private Color color;
+	private Color color;	
 	
 	
 
-	public Tomato(Point[] inShape, Point inPosition, double inRotation, int height) {
+	public Tomato(Point[] inShape, Point inPosition, double inRotation) {
 		super(inShape, inPosition, inRotation);
 		ySpeed = 4;
 		xSpeed = 10;
-		this.height = height;
+		
 	}
 
 	void paint(Graphics brush) {
@@ -61,6 +62,7 @@ public class Tomato extends Polygon implements KeyListener {
 			}
 		}
 	}
+	
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -88,9 +90,7 @@ public class Tomato extends Polygon implements KeyListener {
 
 	}
 	
-	public int getHeight() {
-		return this.height;
-	}
+
 
 	public void wrap() {
 		if (this.position.x <= -60) {
